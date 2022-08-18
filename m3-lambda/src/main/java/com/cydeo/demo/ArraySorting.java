@@ -11,7 +11,7 @@ public class ArraySorting {
         as.sort(bs);
 
     }
-    private void sort(Sorting sorting){
+    public void sort(Sorting sorting){
        sorting.sort();
     }
 
