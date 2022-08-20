@@ -8,4 +8,5 @@ import com.cydeo.appleTask.ApplePredicate;
 @FunctionalInterface
 public interface ApplePredicateLambda {
     boolean test(AppleLambda appleLambda);
+
 }

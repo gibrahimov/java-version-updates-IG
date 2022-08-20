@@ -18,7 +18,8 @@ public class AppleTestLambda {
 
         ApplePredicateLambda weightApple = appleLambda -> appleLambda.getWeight()>200;
 
-        filterApples(inventory, weightApple);
+
+        System.out.println(filterApples(inventory, weightApple));
 
     }
     private static List<AppleLambda> filterApples(List<AppleLambda> inventory, ApplePredicateLambda applePredicateLambda){

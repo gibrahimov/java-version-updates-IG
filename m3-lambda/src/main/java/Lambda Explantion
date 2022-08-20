@@ -1,0 +1,261 @@
+Before Java 8/ lambda
+we used to do following for functional programming
+1. Create Interface
+2. Create class to implement interface
+3. Create Method accepting different behaviour with polymorphism
+
+After Java 8/ and with Lambda
+
+1. Create Interface(If you use already created interfaces you will skip this step
+2. Create Method, pass the lambda function
+
+So this is how Java solved functional programming
+--------------------------------------------------------------------------------------
+
+
+Lambda: are just function. They do not belong to any class. These functions can assume as values
+Value like variable, for example
+
+String name = "Qadir"; name is value. name is holding String "Qadir
+int x = 5; x holding 5
+
+so in our lambda we will say name or x hold Function.
+
+abc = public void sort(){
+System.out.println("Helllo world")
+}
+
+-----------VS----------------------
+
+abc = () -> {System.out.println("Helllo world");}
+
+
+
+so abs is Value holding Function(method) action.
+we don't need access modifier (public, private etc) we don't have class
+sort - method name - NO NEED IT
+return type - compiler can figure out by looking at the code so we DON'T NEED return type
+-> arrow, lambda sign, to separate parameter portion from body portion
+
+If it is one line you don't need curly braces anymore. More than 1 line you need {}
+... abc = () -> System.out.println("Helllo world");
+... will be your interface name
+
+sorting(abc);
+or
+sorting( () -> System.out.println("Helllo world"); );
+
+What about we have Function that takes arguments:
+
+    public boolean test(Apple apple){
+    return apple.getWeight()>200;
+    }
+
+    ----------with lambda---------
+
+   ApplePredicate weightApple = (Apple apple) -> apple.getWeight()>200;
+ApplePredicate is your interface name
+
+----------------------------------------------------------------------
+
+... lengthCount = (String s) -> s.length; //accept string and return the length of it.
+
+s.length; -- is called implementation of your interface
+
+... will be your interface name
+
+myLambda = () -> 42 // I have action like method which does not accept parameter and returns 42
+
+Creating Lambda
+
+Step 1. Create a new Functional interface. If you have already have intricate then this is optional
+
+interface myLambda{}
+
+Step 2. Create a method, exact the same signature with lambda expression
+Signature = Parameter + Return type
+
+YOU CAN CREATE LAMBDA IF YOU HAVE FUNCTIONAL INTERFACE. FUNCTIONAL INTERFACE is an interface that
+specifies exactly one abstract method.
+
+interface myLambda{
+ void print();
+ int print(int x)-- so if we have two abstract method we can't create lambda from it
+}
+myLambda abc = () -> System.out.println("Qadir"); //
+
+We still have to create Interfaces BUT
+with Java 8 there are lots of interfaces were created and are ready to use. We just need to pay attention
+signature of the method. Implementation needs to be met with signature.
+
+Type Inference
+
+StringLengthLambda myLambda = (String s) -> s.length;
+StringLengthLambda myLambda = (s) -> s.length;
+So we don't need String as compiler already know it is String so we don't need to write type anymore
+it is called Type Inference, also we don't need () if we have one parameter
+StringLengthLambda myLambda = s -> s.length;
+StringLengthLambda myLambda = (x,y) -> x+y here we NEED () as we have >1 parameter
+
+---------------NICE SUMMARY HERE---------------------------------------------------
+Predicate anyName (p) -> p%2 == 0 ? true : false;
+ So somebody trying to write lambda and this implementation (p%2 == 0 ? true : false;) is
+belonging to abstract method inside the functional interface. So now we need to find out ready Functional interface
+coming from Java 8. In order to find proper functional interface we look at signature of lambda which is
+ (p) -> p%2 == 0 ? true : false; - Signature says it is accepting 1 parameter (p) and returning boolean.
+ And that is Predicate.
+Here is Predicate interface and implementation of it:
+-----------------------------------------------------
+ public interface Predicate<T> {
+ boolean test(T t); --- accept 1 parameter and return boolean.
+}
+-----------------------------------------------------
+<T> means generic, so it could be Integer, Double, Object, String etc. That's why we use generic.
+So Predicate interface accept generic.
+
+-------------------------------------------------------------------------------------
+
+Lambda REVIEW
+
+So our task was, Find all apples that are heavier 200 gram.
+1st Method I need - give me one apple boolean test(Apple apple); and based on action return apple.getWeight()>200;
+and return boolean(true or false) if apple >200 gram
+2nd Method - give me one apple boolean test(Apple apple); and based on action
+return apple.getColor().equals(Color.GREEN); return boolean(true or false) if apple is green
+
+
+public interface ApplePredicate {
+    boolean test(Apple apple);
+ }
+
+
+  This is Interface, main thing we are trying to do is to pass action to the method. Whatever that method
+  is, that method should be able to accept different behaviours, actions.
+  So main subject is how to pass different action to the certain method?
+  Before Java 8 java was doing it with OOP concepts. So let's see how we do it with OOP concepts.
+
+  1.  We create interface, the purpose of creating interface? We should create structure which should
+  be able to pass different action to the method. So this is definition of interface. We are able to
+  do something but we don't know the implementation and that implementation can change.
+
+public class AppleHeavyPredicate implements ApplePredicate{
+    @Override
+    public boolean test(Apple apple) {
+        return apple.getWeight()>200;
+    }
+}
+
+public class AppleGreenColorPredicate implements ApplePredicate{
+
+    @Override
+    public boolean test(Apple apple) {
+        return apple.getColor().equals(Color.GREEN);
+    }
+}
+
+Let's understand this. So AppleGreenColorPredicate is a class/action. And inside this AppleGreenColorPredicate
+class we have a method and this method accept apple object and that apple is holding data.
+
+    2.  So interface will help us to pass DIFFERENT action through this above abstract method. NOW
+    time to define that action or actions. That action is AppleHeavyPredicate which implements
+    ApplePredicate interface. YOU can create as many action you would like, your main responsibility is
+    implement ApplePredicate interface.
+
+    3.  OK, we can create lots of action by implementing interface, BUT how will we pass those different
+    action to certain methods without making any changes on the method. By below method
+
+     private static List<Apple> filterApples(List<Apple> inventory, ApplePredicate applePredicate){
+            List<Apple> result = new ArrayList<>();
+            for (Apple apple : inventory) {
+                if (applePredicate.test(apple)){
+                    result.add(apple);
+                }
+            }
+            return result;
+        }
+
+     4.  So my above method filterApple will take different actions depending on your needs. We will
+     use Polymorphism concept, which will allow to pass different action like below
+
+     ApplePredicate ah = new AppleHeavyPredicate(); action
+     ApplePredicate ag = new AppleGreenColorPredicate(); action
+
+ Can we create object from interface?
+ like   ApplePredicate a = new  ApplePredicate(); We CAN'T DO LIKE THIS.
+ We can't create object from interface. However by using Polymorphism concept our left side will be
+ parent or interface and right side is going to be child classes either implementing interface or
+ extending parent class. So when we create this
+
+ ApplePredicate ah = new AppleHeavyPredicate(); => We are not creating object from interface, you are
+ creating object from child and this is Polymorphism concept.
+
+private static List<Apple> filterApples(List<Apple> inventory, ApplePredicate applePredicate){
+=>ApplePredicate applePredicate portion MEANS - so instead of putting directly AppleHeavyPredicate object
+we can put interface and then I will be eligible to pass any action with using ApplePredicate applePredicate
+Polymorphism concept which is
+
+        AppleHeavyPredicate obj = new AppleHeavyPredicate();
+        List<Apple> heavyApple = filterApples(inventory, obj);
+
+        List<Apple> greenApple = filterApples(inventory, new AppleGreenColorPredicate());// short way
+
+}
+
+Can we create object from interface? like
+
+so all these we used in before Lambda Java 8 and we will still use this structure in development environment
+---------------------------------------------------------------------------------------------
+So with Lambda
+
+below implementation portions are eliminated/removed/no needed
+
+----------------------------------------------------------------
+public class AppleHeavyPredicate implements ApplePredicate{
+    @Override
+    public boolean test(Apple apple) {
+        return apple.getWeight()>200;
+    }
+}
+
+public class AppleGreenColorPredicate implements ApplePredicate{
+
+    @Override
+    public boolean test(Apple apple) {
+        return apple.getColor().equals(Color.GREEN);
+    }
+}
+-----------------------------------------------------------------
+
+SO we can pass action directly to method like below
+
+ApplePredicate weightApple = apple -> apple.getWeight()>200;
+filterApples(inventory, weightApple);
+
+----------or we can do this way as well-----------
+
+filterApples(inventory, apple -> apple.getWeight()>200 );
+
+apple.getWeight()>200; --- this part is called implementation of interface.
+
+
+So STEPS for Lambda:
+
+1. Create Functional Interface (only 1 abstract method)
+2. Abstract method should have the same signature with Lambda. Lets understand signature portion
+Signature = Parameter + Return type
+SO if you DON'T have method you CAN'T create LAMBDA expression. NO METHOD NO LAMBDA
+public interface ApplePredicate {
+    boolean test(Apple apple);
+ }
+Let's read this: I have test method accepting 1 parameter which is apple object and return boolean
+So when we write lambda  - apple -> apple.getWeight()>200
+here
+filterApples(inventory, apple -> apple.getWeight()>200 );
+
+lambda must match with the same signature meaning, Needs to accept parameter apple object, apple ->
+and needs to return boolean apple.getWeight()>200.
+SO must return boolean because our interface has boolean return type
+AND we need to put -> signe between parameter and implementation.
+
+WE DON'T CARE ABOUT METHOD NAME AND WE DON'T CARE ABOUT INTERFACE NAME. WE ONLY CARE ABOUT IMPLEMENTATION
+
