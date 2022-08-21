@@ -18,7 +18,19 @@ public class Main {
         Collections.sort(list, new MyComparator());
         System.out.println(list);
 
+
         Collections.sort(list,((o1,o2) -> (o1 > o2) ? -1 : (o1 < o2) ? 1 : 0));
+        System.out.println(list);
+
+        //Ascending order
+        list.sort((o1,o2)->o1.compareTo(o2));
+        System.out.println(list);
+
+        //Descending order
+        list.sort((o2,o1)->o1.compareTo(o2));
+        System.out.println(list);
+
+
 
 
     }
