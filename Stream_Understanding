@@ -1,0 +1,16 @@
+Why Stream?
+
+Stream - like flowing something
+Stream is a sequence of elements from a source that supports data processing operations.
+Streams are an update to the Java API that let you manipulate collections of data in a declarative way.
+manipulate collections - do some action, like sorting, get element and double etc.
+Stream Pipeline is the operations that run on a stream to produce a result.
+
+Stream pipeline steps:
+
+1. Data source most likely Collection, ArrayList
+2. create stream from source, convert to stream
+3. start implementing certain operation on that data, sort, filter, convert, map etc
+4. Do Terminal operation, once you done with operation you need to exit from operation line
+5. Output, like aggregate result. e.g count, sum or collection etc
+
