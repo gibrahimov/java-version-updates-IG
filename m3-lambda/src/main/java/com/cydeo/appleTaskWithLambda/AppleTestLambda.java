@@ -17,9 +17,10 @@ public class AppleTestLambda {
         inventory.add(new AppleLambda(50,Color.RED));
 
         ApplePredicateLambda weightApple = appleLambda -> appleLambda.getWeight()>200;
-
+        ApplePredicateLambda colorApple = appleLambda -> appleLambda.getColor().equals(Color.GREEN);
 
         System.out.println(filterApples(inventory, weightApple));
+        System.out.println(filterApples(inventory, colorApple));
 
     }
     private static List<AppleLambda> filterApples(List<AppleLambda> inventory, ApplePredicateLambda applePredicateLambda){

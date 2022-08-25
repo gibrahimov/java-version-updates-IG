@@ -18,6 +18,7 @@ public class AppleTest {
         List<Apple> greenApple = filterApples(inventory, new AppleGreenColorPredicate());// short way
 
         System.out.println(greenApple);
+        System.out.println(heavyApple);
 
 
 

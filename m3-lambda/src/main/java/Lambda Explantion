@@ -54,7 +54,7 @@ What about we have Function that takes arguments:
     ----------with lambda---------
 
    ApplePredicate weightApple = (Apple apple) -> apple.getWeight()>200;
-ApplePredicate is your interface name
+ApplePredicate is your interface name that takes object and return boolean
 
 ----------------------------------------------------------------------
 
@@ -68,12 +68,12 @@ myLambda = () -> 42 // I have action like method which does not accept parameter
 
 Creating Lambda
 
-Step 1. Create a new Functional interface. If you have already have intricate then this is optional
+Step 1. Create a new Functional interface. If you have already have interface then this is optional
 
 interface myLambda{}
 
 Step 2. Create a method, exact the same signature with lambda expression
-Signature = Parameter + Return type
+Signature = Parameter + Return type(implementation part)
 
 YOU CAN CREATE LAMBDA IF YOU HAVE FUNCTIONAL INTERFACE. FUNCTIONAL INTERFACE is an interface that
 specifies exactly one abstract method.
@@ -140,7 +140,7 @@ public interface ApplePredicate {
 
 public class AppleHeavyPredicate implements ApplePredicate{
     @Override
-    public boolean test(Apple apple) {
+    public boolean test(Apple apple) {   boolean test(Apple apple); this part is the same as abstract method
         return apple.getWeight()>200;
     }
 }
@@ -148,7 +148,7 @@ public class AppleHeavyPredicate implements ApplePredicate{
 public class AppleGreenColorPredicate implements ApplePredicate{
 
     @Override
-    public boolean test(Apple apple) {
+    public boolean test(Apple apple) {  boolean test(Apple apple); this part is the same as abstract method
         return apple.getColor().equals(Color.GREEN);
     }
 }
@@ -156,8 +156,8 @@ public class AppleGreenColorPredicate implements ApplePredicate{
 Let's understand this. So AppleGreenColorPredicate is a class/action. And inside this AppleGreenColorPredicate
 class we have a method and this method accept apple object and that apple is holding data.
 
-    2.  So interface will help us to pass DIFFERENT action through this above abstract method. NOW
-    time to define that action or actions. That action is AppleHeavyPredicate which implements
+    2.  So interface will help us to pass DIFFERENT action through this above abstract method. boolean test(Apple apple);
+    NOW time to define that action or actions. That action is AppleHeavyPredicate which implements
     ApplePredicate interface. YOU can create as many action you would like, your main responsibility is
     implement ApplePredicate interface.
 
@@ -201,7 +201,7 @@ Polymorphism concept which is
 
 }
 
-Can we create object from interface? like
+
 
 so all these we used in before Lambda Java 8 and we will still use this structure in development environment
 ---------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ public class AppleGreenColorPredicate implements ApplePredicate{
 
 SO we can pass action directly to method like below
 
-ApplePredicate weightApple = apple -> apple.getWeight()>200;
+ApplePredicate weightApple/anyName = apple -> apple.getWeight()>200;
 filterApples(inventory, weightApple);
 
 ----------or we can do this way as well-----------
@@ -247,7 +247,7 @@ SO if you DON'T have method you CAN'T create LAMBDA expression. NO METHOD NO LAM
 public interface ApplePredicate {
     boolean test(Apple apple);
  }
-Let's read this: I have test method accepting 1 parameter which is apple object and return boolean
+Let's read this method: I have test method accepting 1 parameter which is apple object and return boolean
 So when we write lambda  - apple -> apple.getWeight()>200
 here
 filterApples(inventory, apple -> apple.getWeight()>200 );

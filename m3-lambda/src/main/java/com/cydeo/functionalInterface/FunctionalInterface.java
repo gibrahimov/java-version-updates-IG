@@ -13,12 +13,12 @@ public class FunctionalInterface {
         System.out.println("---------------------CONSUMER---------------------");
 
         Consumer<Integer> display = i -> System.out.println(i); // accept object but return nothing
-        display.accept(10);
+        display.accept(10); // return 10
 
         System.out.println("---------------------BI CONSUMER-------------------");
         // accept two objects and returns nothing
         BiConsumer<Integer,Integer> addTwo = (x,y) -> System.out.println(x+y);
-        addTwo.accept(5,8);
+        addTwo.accept(5,8);// return 13
 
         System.out.println("---------------------FUNCTION---------------------");
         //accept object and returns object

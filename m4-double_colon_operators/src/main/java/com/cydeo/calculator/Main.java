@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 public class Main {
     public static void main(String[] args) {
 
-        Calculate sum = (x,y)-> System.out.println(x+y);
-        sum.calculate(20,30);
+        Calculate sumAnyName = (x,y)-> System.out.println(x+y);
+        sumAnyName.calculate(20,30);
 
         Calculate s1 = (x,y)-> Calculator.findSum(x,y);
         s1.calculate(10,40);
@@ -18,10 +18,10 @@ public class Main {
  class name which is Calculator.
   */
         // Referencing to Static Method
-        Calculate s2 = Calculator::findSum;// no parameter wit double colon
+        Calculate s2 = Calculator::findSum;// no parameter with double colon
         s2.calculate(10,20);
 
-        // Referencing to Instance Method
+        // Referencing to Instance Method that's why we need new key word
         Calculator obj = new Calculator();
         Calculate s3 = obj::findMultiply;
         s3.calculate(15,15);

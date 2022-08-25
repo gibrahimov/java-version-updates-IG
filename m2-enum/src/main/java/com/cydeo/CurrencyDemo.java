@@ -9,7 +9,7 @@ public class CurrencyDemo {
         public static final com.cydeo.CurrencyDemo DIME = new com.cydeo.CurrencyDemo();
         public static final com.cydeo.CurrencyDemo QUARTER = new com.cydeo.CurrencyDemo();
 
-        // we can access to Penny through class name
+        // Static so we can access to Penny through class name
 
 
     }

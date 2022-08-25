@@ -12,7 +12,7 @@ public class CarTest {
         Supplier<Car> c1 = () -> new Car();
         System.out.println(c1.get().getModel());
 
-        //calking with constructor, that's why we use new keyword. We call constructor with new keyword
+        //calling with constructor, that's why we use new keyword. We call constructor with new keyword
         // This is not used a lot
         Supplier<Car> c2 = Car:: new;
         System.out.println(c2.get().getModel());
