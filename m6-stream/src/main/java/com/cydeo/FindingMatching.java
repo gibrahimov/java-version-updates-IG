@@ -19,7 +19,8 @@ public class FindingMatching {
         System.out.println(isHealthy);
 
         System.out.println("----------------ANY MATCH------------------");
-        if (DishData.getAll().stream().anyMatch(Dish::isVegetarian)) {
+        if (DishData.getAll().stream().anyMatch(Dish::isVegetarian)  ) {
+            // isVegeterian is getter name for boolean. For boolean we use 'is' not 'get'
             System.out.println("The menu is vegetarian friendly");
         }
 

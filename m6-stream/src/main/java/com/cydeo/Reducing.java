@@ -41,8 +41,8 @@ public class Reducing {
         Optional<Integer> nSum = numbers.stream().reduce(Integer::sum); // Integer is class
 
         System.out.println("Min:" + nMin.get());
-        System.out.println("Min:" + nMax.get());
-        System.out.println("Min:" + nSum.get());
+        System.out.println("Max:" + nMax.get());
+        System.out.println("Sum:" + nSum.get());
 
         System.out.println("----------------COUNT------------------");
 

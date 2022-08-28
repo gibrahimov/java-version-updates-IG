@@ -23,6 +23,7 @@ public class CollectorsDemo {
         Set<Integer> numberSet = numbers.stream()
                 .filter(x -> x % 2 == 0)
                 .collect((Collectors.toCollection(HashSet::new)));
+        //result is assigned to new array list
         System.out.println(numberSet);
 
         System.out.println("-----------toList---------------");

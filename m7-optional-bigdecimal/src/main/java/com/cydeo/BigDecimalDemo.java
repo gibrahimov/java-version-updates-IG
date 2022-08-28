@@ -38,6 +38,9 @@ public class BigDecimalDemo {
         System.out.println(new BigDecimal("1").compareTo(new BigDecimal("2"))); //-1 1<2
         System.out.println(new BigDecimal("0").compareTo(new BigDecimal("2")));// -1 0<2
 
+        System.out.println(new BigDecimal("100").compareTo(new BigDecimal("500"))<=0);
+        // true it means 100.00<500.00
+
         //JAVA 8 is finished at this point
 
     }

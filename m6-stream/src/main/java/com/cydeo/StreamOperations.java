@@ -48,11 +48,16 @@ public class StreamOperations {
         System.out.println("--------------Mapping--------------------");
 
         // mapping apply to each element and mapping it to a new element.
-        list.stream()
+        List<Integer> list2 = Arrays.asList(1, 2, 3, 3, 4, 4);
+        list2.stream()
+                .map(number -> number * 2)
+                .forEach(System.out::println);
+        System.out.println("------------------------------");
+
+        list2.stream()
                 .map(number -> number * 2)
                 .filter(i ->  i % 3 == 0)
                 .forEach(System.out::println);
-
 
 
     }

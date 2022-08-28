@@ -1,5 +1,5 @@
-module moduleJava9 {
-    exports com.cydeo.java9;
-// find requires moduleJava9; which is in m7 module-info.java
+module module8 {
+    requires lombok;
+    exports com.cydeo.java9; // giving access only to java9 Not java 10
 
 }

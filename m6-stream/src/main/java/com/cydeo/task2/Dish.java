@@ -13,4 +13,6 @@ public class Dish {
     private int calories;
     private Type type;
 
+
+
 }
